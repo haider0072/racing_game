@@ -49,21 +49,106 @@ directionalLight.shadow.mapSize.width = 2048;
 directionalLight.shadow.mapSize.height = 2048;
 scene.add(directionalLight);
 
-// Ground plane
-const groundGeometry = new THREE.PlaneGeometry(100, 100);
-const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0x333333,
-    roughness: 0.8,
-    metalness: 0.2
+// Create oval racing track with straights and curves
+const trackWidth = 12; // 2-lane track
+const trackInnerRadius = 80; // Inner radius of curves
+const trackOuterRadius = trackInnerRadius + trackWidth;
+const straightLength = 200; // Length of straight sections
+
+// Create track using Shape and ExtrudeGeometry for smooth curves
+const trackShape = new THREE.Shape();
+
+// Start at bottom of left straight
+trackShape.moveTo(-trackWidth/2, -straightLength/2);
+
+// Left straight (going up)
+trackShape.lineTo(-trackWidth/2, straightLength/2);
+
+// Top curve (counter-clockwise)
+trackShape.absarc(0, straightLength/2, trackInnerRadius, Math.PI, 0, true);
+
+// Right straight (going down)
+trackShape.lineTo(trackOuterRadius, straightLength/2);
+trackShape.lineTo(trackOuterRadius, -straightLength/2);
+
+// Bottom curve (counter-clockwise)
+trackShape.absarc(0, -straightLength/2, trackOuterRadius, 0, Math.PI, true);
+
+// Close the shape
+trackShape.lineTo(-trackWidth/2, -straightLength/2);
+
+// Create asphalt material
+const trackMaterial = new THREE.MeshStandardMaterial({
+    color: 0x2a2a2a,
+    roughness: 0.9,
+    metalness: 0.1
 });
-const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+
+// Create track mesh
+const trackGeometry = new THREE.ShapeGeometry(trackShape);
+const track = new THREE.Mesh(trackGeometry, trackMaterial);
+track.rotation.x = -Math.PI / 2;
+track.position.y = 0.01; // Slightly above ground to prevent z-fighting
+track.receiveShadow = true;
+scene.add(track);
+
+// Add lane markings using lines
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const innerLaneMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 }); // Yellow for edges
+
+// Helper function to create dashed center line
+function createCenterLine() {
+    const points = [];
+    const dashLength = 5;
+    const gapLength = 5;
+
+    // Left straight
+    for (let y = -straightLength/2; y < straightLength/2; y += dashLength + gapLength) {
+        points.push(new THREE.Vector3(0, 0.05, y));
+        points.push(new THREE.Vector3(0, 0.05, Math.min(y + dashLength, straightLength/2)));
+    }
+
+    // Top curve
+    const topCurveRadius = trackInnerRadius + trackWidth/2;
+    for (let angle = Math.PI; angle > 0; angle -= 0.2) {
+        const x = Math.cos(angle) * topCurveRadius;
+        const z = straightLength/2 + Math.sin(angle) * topCurveRadius;
+        points.push(new THREE.Vector3(x, 0.05, z));
+    }
+
+    // Right straight
+    for (let y = straightLength/2; y > -straightLength/2; y -= dashLength + gapLength) {
+        points.push(new THREE.Vector3(trackInnerRadius + trackWidth/2, 0.05, y));
+        points.push(new THREE.Vector3(trackInnerRadius + trackWidth/2, 0.05, Math.max(y - dashLength, -straightLength/2)));
+    }
+
+    // Bottom curve
+    const bottomCurveRadius = trackInnerRadius + trackWidth/2;
+    for (let angle = 0; angle < Math.PI; angle += 0.2) {
+        const x = Math.cos(angle) * bottomCurveRadius;
+        const z = -straightLength/2 + Math.sin(angle) * bottomCurveRadius;
+        points.push(new THREE.Vector3(x, 0.05, z));
+    }
+
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const line = new THREE.LineSegments(geometry, lineMaterial);
+    scene.add(line);
+}
+
+createCenterLine();
+
+// Add grass infield and outfield
+const grassMaterial = new THREE.MeshStandardMaterial({
+    color: 0x3a5f3a,
+    roughness: 1.0
+});
+
+// Large ground plane for grass
+const groundGeometry = new THREE.PlaneGeometry(800, 800);
+const ground = new THREE.Mesh(groundGeometry, grassMaterial);
 ground.rotation.x = -Math.PI / 2;
 ground.receiveShadow = true;
 scene.add(ground);
-
-// Grid helper for visual reference
-const gridHelper = new THREE.GridHelper(100, 100, 0x888888, 0x444444);
-scene.add(gridHelper);
 
 // Ground physics body
 const groundMaterialPhysics = new CANNON.Material('ground');
@@ -88,7 +173,7 @@ scene.add(cube);
 // Car chassis physics body - SIMPLIFIED
 const carShape = new CANNON.Box(new CANNON.Vec3(1, 0.5, 2));
 const carBody = new CANNON.Body({
-    mass: 500,
+    mass: 1773, // Nissan GT-R R35 curb weight (kg)
     shape: carShape,
     position: new CANNON.Vec3(0, 0.6, 0), // Slightly higher to avoid ground collision issues
     linearDamping: 0.0, // NO damping - we'll handle it manually
@@ -178,12 +263,12 @@ window.addEventListener('keyup', (event) => {
 
 // Update car movement - DIRECT VELOCITY CONTROL (SIMPLIFIED)
 function updateCarMovement() {
-    const acceleration = 0.6; // Realistic sports car acceleration
-    const maxSpeed = 200; // Allow very high speeds (top speed controlled by drag)
+    const acceleration = 0.62; // Nissan GT-R R35: 0-100 km/h in ~3.2s (final tuned)
+    const maxSpeed = 400; // GT-R can reach 315 km/h (set higher, drag will limit naturally)
     const friction = 0.99; // Minimal friction when coasting
     const turnSpeed = 2.5;
-    const lateralGrip = 0.85; // Tire grip coefficient (0.85 = strong grip, reduces sideways sliding)
-    const dragCoefficient = 0.0005; // Realistic air drag - allows 150-180 km/h top speed
+    const lateralGrip = 0.95; // GT-R AWD grip (0.95 = exceptional grip, minimal sliding)
+    const dragCoefficient = 0.0002; // GT-R air drag - allows ~315 km/h top speed
 
     // Keep car upright (lock X and Z rotation)
     const euler = new CANNON.Vec3();
