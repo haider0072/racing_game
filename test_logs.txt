@@ -1,0 +1,206 @@
+🚀 ACCELERATION START - Speed: 0.0 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 1.40s | Speed gain: 119.7 km/h | Final: 119.7 km/h | Max reached: 119.7 km/h
+main.js:271 🌊 COASTING START - Speed: 119.7 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.27s | Speed loss: 60.5 km/h | From: 119.7 to 59.2 km/h
+main.js:271 🌊 COASTING START - Speed: 57.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.37s | Speed loss: 28.7 km/h | From: 57.1 to 28.4 km/h
+main.js:271 🌊 COASTING START - Speed: 27.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.20s | Speed loss: 7.7 km/h | From: 27.6 to 19.9 km/h
+main.js:271 🌊 COASTING START - Speed: 19.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 19.4 to 19.4 km/h
+main.js:271 🌊 COASTING START - Speed: 18.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.9 to 18.9 km/h
+main.js:271 🌊 COASTING START - Speed: 18.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.4 to 18.4 km/h
+main.js:271 🌊 COASTING START - Speed: 17.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 17.9 to 17.9 km/h
+main.js:214 🚀 ACCELERATION START - Speed: 17.5 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 1.03s | Speed gain: 100.7 km/h | Final: 118.1 km/h | Max reached: 119.7 km/h
+main.js:271 🌊 COASTING START - Speed: 118.1 km/h
+main.js:287 ⚠️ COASTING END - Duration: 0.17s | Speed loss: 44.1 km/h | From: 118.1 to 74.1 km/h
+main.js:271 🌊 COASTING START - Speed: 43.7 km/h
+main.js:214 🚀 ACCELERATION START - Speed: 33.0 km/h
+main.js:287 ⚠️ COASTING END - Duration: 0.15s | Speed loss: 10.7 km/h | From: 43.7 to 33.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 117.9 km/h
+main.js:260 ⚠️ BRAKING RELEASED - Duration: 0.72s | Speed loss: 94.4 km/h | From: 117.9 to 23.5 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 2.75s | Speed gain: 83.2 km/h | Final: 116.2 km/h | Max reached: 119.7 km/h
+main.js:243 🛑 BRAKING START - Speed: 116.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.32s | Speed loss: 111.7 km/h | From: 116.2 to 4.5 km/h
+main.js:243 🛑 BRAKING START - Speed: 3.8 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 3.8 to 3.8 km/h
+main.js:243 🛑 BRAKING START - Speed: 3.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 3.2 to 3.2 km/h
+main.js:243 🛑 BRAKING START - Speed: 2.8 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 2.8 to 2.8 km/h
+main.js:243 🛑 BRAKING START - Speed: 2.3 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 2.3 to 2.3 km/h
+main.js:243 🛑 BRAKING START - Speed: 2.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 2.0 to 2.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 1.7 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 1.7 to 1.7 km/h
+main.js:243 🛑 BRAKING START - Speed: 1.4 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 1.4 to 1.4 km/h
+main.js:243 🛑 BRAKING START - Speed: 1.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 1.2 to 1.2 km/h
+main.js:243 🛑 BRAKING START - Speed: 1.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 1.0 to 1.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.9 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.9 to 0.9 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.7 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.7 to 0.7 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.6 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.6 to 0.6 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.5 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.5 to 0.5 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.5 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.5 to 0.5 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.4 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.4 to 0.4 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.3 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.3 to 0.3 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.3 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.3 to 0.3 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.2 to 0.2 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.2 to 0.2 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.2 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.2 to 0.2 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.1 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.1 to 0.1 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:243 🛑 BRAKING START - Speed: 0.0 km/h
+main.js:253 ✅ BRAKING COMPLETE - Duration: 0.00s | Speed loss: 0.0 km/h | From: 0.0 to 0.0 km/h
+main.js:214 🚀 ACCELERATION START - Speed: 0.0 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 1.20s | Speed gain: 118.9 km/h | Final: 118.9 km/h | Max reached: 119.7 km/h
+main.js:271 🌊 COASTING START - Speed: 118.9 km/h
+main.js:287 ⚠️ COASTING END - Duration: 0.20s | Speed loss: 50.2 km/h | From: 118.9 to 68.6 km/h
+main.js:271 🌊 COASTING START - Speed: 32.6 km/h
+main.js:214 🚀 ACCELERATION START - Speed: 29.0 km/h
+main.js:287 ⚠️ COASTING END - Duration: 0.07s | Speed loss: 3.5 km/h | From: 32.6 to 29.0 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 1.42s | Speed gain: 90.3 km/h | Final: 119.4 km/h | Max reached: 119.7 km/h
+main.js:271 🌊 COASTING START - Speed: 119.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.27s | Speed loss: 60.3 km/h | From: 119.4 to 59.1 km/h
+main.js:271 🌊 COASTING START - Speed: 56.9 km/h
+main.js:287 ⚠️ COASTING END - Duration: 0.07s | Speed loss: 7.5 km/h | From: 56.9 to 49.5 km/h
+main.js:271 🌊 COASTING START - Speed: 36.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.37s | Speed loss: 16.7 km/h | From: 36.1 to 19.5 km/h
+main.js:271 🌊 COASTING START - Speed: 19.0 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 19.0 to 19.0 km/h
+main.js:271 🌊 COASTING START - Speed: 18.5 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.5 to 18.5 km/h
+main.js:271 🌊 COASTING START - Speed: 18.0 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.0 to 18.0 km/h
+main.js:271 🌊 COASTING START - Speed: 17.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 17.6 to 17.6 km/h
+main.js:271 🌊 COASTING START - Speed: 17.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 17.1 to 17.1 km/h
+main.js:271 🌊 COASTING START - Speed: 16.7 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 16.7 to 16.7 km/h
+main.js:271 🌊 COASTING START - Speed: 16.3 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 16.3 to 16.3 km/h
+main.js:271 🌊 COASTING START - Speed: 15.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 15.9 to 15.9 km/h
+main.js:214 🚀 ACCELERATION START - Speed: 15.5 km/h
+main.js:227 ✅ ACCELERATION END - Duration: 0.52s | Speed gain: 86.1 km/h | Final: 101.6 km/h | Max reached: 119.7 km/h
+main.js:271 🌊 COASTING START - Speed: 101.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.30s | Speed loss: 52.4 km/h | From: 101.6 to 49.2 km/h
+main.js:271 🌊 COASTING START - Speed: 47.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.40s | Speed loss: 24.4 km/h | From: 47.6 to 23.2 km/h
+main.js:271 🌊 COASTING START - Speed: 22.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.08s | Speed loss: 2.8 km/h | From: 22.6 to 19.8 km/h
+main.js:271 🌊 COASTING START - Speed: 19.3 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 19.3 to 19.3 km/h
+main.js:271 🌊 COASTING START - Speed: 18.8 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.8 to 18.8 km/h
+main.js:271 🌊 COASTING START - Speed: 18.3 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 18.3 to 18.3 km/h
+main.js:271 🌊 COASTING START - Speed: 17.8 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 17.8 to 17.8 km/h
+main.js:271 🌊 COASTING START - Speed: 17.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 17.4 to 17.4 km/h
+main.js:271 🌊 COASTING START - Speed: 16.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 16.9 to 16.9 km/h
+main.js:271 🌊 COASTING START - Speed: 16.5 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 16.5 to 16.5 km/h
+main.js:271 🌊 COASTING START - Speed: 16.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 16.1 to 16.1 km/h
+main.js:271 🌊 COASTING START - Speed: 15.7 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 15.7 to 15.7 km/h
+main.js:271 🌊 COASTING START - Speed: 15.3 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 15.3 to 15.3 km/h
+main.js:271 🌊 COASTING START - Speed: 14.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 14.9 to 14.9 km/h
+main.js:271 🌊 COASTING START - Speed: 14.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 14.6 to 14.6 km/h
+main.js:271 🌊 COASTING START - Speed: 14.2 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 14.2 to 14.2 km/h
+main.js:271 🌊 COASTING START - Speed: 13.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 13.9 to 13.9 km/h
+main.js:271 🌊 COASTING START - Speed: 13.5 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 13.5 to 13.5 km/h
+main.js:271 🌊 COASTING START - Speed: 13.2 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 13.2 to 13.2 km/h
+main.js:271 🌊 COASTING START - Speed: 12.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 12.9 to 12.9 km/h
+main.js:271 🌊 COASTING START - Speed: 12.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 12.6 to 12.6 km/h
+main.js:271 🌊 COASTING START - Speed: 12.3 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 12.3 to 12.3 km/h
+main.js:271 🌊 COASTING START - Speed: 12.0 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 12.0 to 12.0 km/h
+main.js:271 🌊 COASTING START - Speed: 11.7 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 11.7 to 11.7 km/h
+main.js:271 🌊 COASTING START - Speed: 11.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 11.4 to 11.4 km/h
+main.js:271 🌊 COASTING START - Speed: 11.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 11.1 to 11.1 km/h
+main.js:271 🌊 COASTING START - Speed: 10.9 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 10.9 to 10.9 km/h
+main.js:271 🌊 COASTING START - Speed: 10.6 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 10.6 to 10.6 km/h
+main.js:271 🌊 COASTING START - Speed: 10.4 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 10.4 to 10.4 km/h
+main.js:271 🌊 COASTING START - Speed: 10.1 km/h
+main.js:280 ✅ COASTING DECEL - Duration: 0.00s | Speed loss: 0.0 km/h | From: 10.1 to 10.1 km/h
