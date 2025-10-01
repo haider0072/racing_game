@@ -52,3 +52,56 @@ body {
     display: block;
     margin-bottom: 5px;
 }
+
+#camera-controls {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 100;
+    font-size: 14px;
+    min-width: 250px;
+}
+
+#camera-controls h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #0f0;
+}
+
+#camera-controls label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#camera-controls .section {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+#camera-controls .section:last-child {
+    border-bottom: none;
+}
+
+#camera-controls strong {
+    color: #0f0;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+#camera-controls input[type="number"] {
+    width: 80px;
+    margin-left: 8px;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #0f0;
+    border: 1px solid #0f0;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'Courier New', monospace;
+}
