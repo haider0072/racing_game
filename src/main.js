@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Scene setup
 const scene = new THREE.Scene();
@@ -33,10 +34,10 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 // Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.0); // Increased from 0.6 to 1.0
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); // Increased from 0.8 to 1.2
 directionalLight.position.set(50, 50, 50);
 directionalLight.castShadow = true;
 directionalLight.shadow.camera.left = -50;
@@ -161,13 +162,50 @@ const groundBody = new CANNON.Body({
 groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0); // Rotate to horizontal
 world.addBody(groundBody);
 
-// Add a test cube (temporary placeholder for car)
+// Load Nissan GT-R R35 3D model
+let car = null; // Will hold the loaded car model
+const loader = new GLTFLoader();
+
+loader.load(
+    '/assets/nissan_gtr/scene.gltf',
+    (gltf) => {
+        car = gltf.scene;
+
+        // The model's pivot point might not be at the bottom, so we need to offset it
+        car.position.set(0, 0, 0); // Start at ground level
+
+        // Scale the model (adjust if needed)
+        car.scale.set(1, 1, 1);
+
+        // Enable shadows for all meshes in the model
+        car.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+
+        scene.add(car);
+        console.log('🏎️ Nissan GT-R R35 model loaded successfully!');
+    },
+    (progress) => {
+        console.log(`Loading model: ${(progress.loaded / progress.total * 100).toFixed(2)}%`);
+    },
+    (error) => {
+        console.error('Error loading GT-R model:', error);
+        // Show cube if model fails to load
+        cube.visible = true;
+    }
+);
+
+// Fallback cube (temporary - will be hidden once model loads)
 const cubeGeometry = new THREE.BoxGeometry(2, 1, 4);
-const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000, transparent: true, opacity: 0.3 });
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.set(0, 0.6, 0);
+cube.position.set(0, 0.3, 0); // Match physics body height
 cube.castShadow = true;
 cube.receiveShadow = true;
+cube.visible = false; // Hide cube initially, show only if model fails to load
 scene.add(cube);
 
 // Car chassis physics body - SIMPLIFIED
@@ -263,12 +301,12 @@ window.addEventListener('keyup', (event) => {
 
 // Update car movement - DIRECT VELOCITY CONTROL (SIMPLIFIED)
 function updateCarMovement() {
-    const acceleration = 0.62; // Nissan GT-R R35: 0-100 km/h in ~3.2s (final tuned)
+    const acceleration = 0.62; // Nissan GT-R R35: 0-100 km/h in ~3.2s (restored working value)
     const maxSpeed = 400; // GT-R can reach 315 km/h (set higher, drag will limit naturally)
     const friction = 0.99; // Minimal friction when coasting
     const turnSpeed = 2.5;
     const lateralGrip = 0.95; // GT-R AWD grip (0.95 = exceptional grip, minimal sliding)
-    const dragCoefficient = 0.0002; // GT-R air drag - allows ~315 km/h top speed
+    const dragCoefficient = 0.0002; // GT-R air drag - allows ~315 km/h top speed (restored)
 
     // Keep car upright (lock X and Z rotation)
     const euler = new CANNON.Vec3();
@@ -422,17 +460,77 @@ function updateCarMovement() {
     }
 }
 
-// Camera follow system
-const cameraOffset = new THREE.Vector3(0, 5, 10);
-const cameraLookAtOffset = new THREE.Vector3(0, 0, -5);
+// Camera follow system - NFS Heat style (with real-time controls)
+let cameraOffset = new THREE.Vector3(0, 2.6, 4.7); // User-tuned optimal view
+let cameraLookAtOffset = new THREE.Vector3(0, 1.2, -0.5); // User-tuned look-at point
 const cameraLerpFactor = 0.1;
 
+// Dynamic camera settings
+let speedHeightGain = 0.4; // User-tuned: camera rises when speeding
+let speedZoomIn = 8.0; // User-tuned: camera zooms in dramatically at speed
+let speedThreshold = 200; // Speed at which dynamic effects max out
+
+// Camera control inputs (commented out - uncomment in HTML to use)
+/*
+const camYInput = document.getElementById('cam-y');
+const camZInput = document.getElementById('cam-z');
+const lookYInput = document.getElementById('look-y');
+const lookZInput = document.getElementById('look-z');
+const speedYInput = document.getElementById('speed-y');
+const speedZInput = document.getElementById('speed-z');
+const speedThresholdInput = document.getElementById('speed-threshold');
+
+// Update camera offset in real-time
+camYInput.addEventListener('input', (e) => {
+    cameraOffset.y = parseFloat(e.target.value) || 0;
+});
+
+camZInput.addEventListener('input', (e) => {
+    cameraOffset.z = parseFloat(e.target.value) || 0;
+});
+
+lookYInput.addEventListener('input', (e) => {
+    cameraLookAtOffset.y = parseFloat(e.target.value) || 0;
+});
+
+lookZInput.addEventListener('input', (e) => {
+    cameraLookAtOffset.z = parseFloat(e.target.value) || 0;
+});
+
+// Dynamic camera controls
+speedYInput.addEventListener('input', (e) => {
+    speedHeightGain = parseFloat(e.target.value) || 0;
+});
+
+speedZInput.addEventListener('input', (e) => {
+    speedZoomIn = parseFloat(e.target.value) || 0;
+});
+
+speedThresholdInput.addEventListener('input', (e) => {
+    speedThreshold = parseFloat(e.target.value) || 200;
+});
+*/
+
 function updateCamera() {
+    // Use car model if loaded, otherwise use cube
+    const target = car || cube;
+
+    // Calculate current speed for dynamic camera
+    const currentSpeed = Math.sqrt(carBody.velocity.x ** 2 + carBody.velocity.z ** 2) * 3.6; // km/h
+
+    // Adjust camera distance based on speed (closer at higher speeds) - NFS style
+    const speedFactor = Math.min(currentSpeed / speedThreshold, 1.0); // 0 to 1 based on threshold
+    const dynamicOffset = new THREE.Vector3(
+        cameraOffset.x,
+        cameraOffset.y + speedFactor * speedHeightGain, // Height gain at speed
+        cameraOffset.z - speedFactor * speedZoomIn // Zoom in at max speed
+    );
+
     // Calculate desired camera position (behind and above the car)
     const desiredPosition = new THREE.Vector3();
-    desiredPosition.copy(cameraOffset);
-    desiredPosition.applyQuaternion(cube.quaternion);
-    desiredPosition.add(cube.position);
+    desiredPosition.copy(dynamicOffset);
+    desiredPosition.applyQuaternion(target.quaternion);
+    desiredPosition.add(target.position);
 
     // Smooth camera movement (lerp)
     camera.position.lerp(desiredPosition, cameraLerpFactor);
@@ -440,8 +538,8 @@ function updateCamera() {
     // Calculate look-at point (slightly ahead of the car)
     const lookAtPoint = new THREE.Vector3();
     lookAtPoint.copy(cameraLookAtOffset);
-    lookAtPoint.applyQuaternion(cube.quaternion);
-    lookAtPoint.add(cube.position);
+    lookAtPoint.applyQuaternion(target.quaternion);
+    lookAtPoint.add(target.position);
 
     // Make camera look at the point
     camera.lookAt(lookAtPoint);
@@ -494,9 +592,15 @@ function animate() {
     // Update physics world
     world.step(timeStep);
 
-    // Sync Three.js mesh with physics body
-    cube.position.copy(carBody.position);
-    cube.quaternion.copy(carBody.quaternion);
+    // Sync GT-R model with physics body (if loaded)
+    if (car) {
+        car.position.copy(carBody.position);
+        car.quaternion.copy(carBody.quaternion);
+    } else {
+        // Sync cube with physics body (fallback)
+        cube.position.copy(carBody.position);
+        cube.quaternion.copy(carBody.quaternion);
+    }
 
     // Update camera to follow car
     updateCamera();
