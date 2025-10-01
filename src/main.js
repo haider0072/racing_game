@@ -558,10 +558,14 @@ function updateCamera() {
     camera.lookAt(lookAtPoint);
 }
 
-// FPS counter
+// Performance monitoring
 let lastTime = performance.now();
 let frames = 0;
 let fps = 0;
+let minFPS = 999;
+let maxFPS = 0;
+let avgFPSsamples = [];
+let frameTimeMS = 0;
 
 function updateFPS() {
     frames++;
@@ -570,7 +574,22 @@ function updateFPS() {
 
     if (elapsed >= 1000) {
         fps = Math.round((frames * 1000) / elapsed);
-        document.getElementById('fps-counter').textContent = `FPS: ${fps}`;
+        frameTimeMS = (elapsed / frames).toFixed(2);
+
+        // Track min/max
+        if (fps < minFPS) minFPS = fps;
+        if (fps > maxFPS) maxFPS = fps;
+
+        // Calculate rolling average (last 10 samples)
+        avgFPSsamples.push(fps);
+        if (avgFPSsamples.length > 10) avgFPSsamples.shift();
+        const avgFPS = Math.round(avgFPSsamples.reduce((a, b) => a + b, 0) / avgFPSsamples.length);
+
+        // Update display
+        document.getElementById('fps-counter').innerHTML =
+            `FPS: ${fps}<br>` +
+            `<small>Avg: ${avgFPS} | Min: ${minFPS} | Frame: ${frameTimeMS}ms</small>`;
+
         frames = 0;
         lastTime = currentTime;
     }
@@ -628,8 +647,93 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+// Lighting Control Panel Setup
+const togglePanelBtn = document.getElementById('toggle-lighting-panel');
+const lightingPanel = document.getElementById('lighting-panel');
+const ambientIntensityInput = document.getElementById('ambient-intensity');
+const sunIntensityInput = document.getElementById('sun-intensity');
+const sunXInput = document.getElementById('sun-x');
+const sunYInput = document.getElementById('sun-y');
+const sunZInput = document.getElementById('sun-z');
+const shadowSizeSelect = document.getElementById('shadow-size');
+const shadowBiasInput = document.getElementById('shadow-bias');
+const logSettingsBtn = document.getElementById('log-settings');
+const resetSettingsBtn = document.getElementById('reset-settings');
+
+// Toggle panel visibility
+togglePanelBtn.addEventListener('click', () => {
+    lightingPanel.classList.toggle('collapsed');
+    togglePanelBtn.textContent = lightingPanel.classList.contains('collapsed') ? '▶ Show' : '▼ Hide';
+});
+
+// Ambient light controls
+ambientIntensityInput.addEventListener('input', (e) => {
+    ambientLight.intensity = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+// Sun light controls
+sunIntensityInput.addEventListener('input', (e) => {
+    directionalLight.intensity = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+sunXInput.addEventListener('input', (e) => {
+    directionalLight.position.x = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+sunYInput.addEventListener('input', (e) => {
+    directionalLight.position.y = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+sunZInput.addEventListener('input', (e) => {
+    directionalLight.position.z = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+// Shadow controls
+shadowSizeSelect.addEventListener('change', (e) => {
+    const size = parseInt(e.target.value);
+    directionalLight.shadow.mapSize.width = size;
+    directionalLight.shadow.mapSize.height = size;
+    directionalLight.shadow.map?.dispose();
+    directionalLight.shadow.map = null;
+    console.log(`Shadow map size updated to ${size}x${size}`);
+});
+
+shadowBiasInput.addEventListener('input', (e) => {
+    directionalLight.shadow.bias = parseFloat(e.target.value);
+    e.target.nextElementSibling.textContent = e.target.value;
+});
+
+// Log current settings to console
+logSettingsBtn.addEventListener('click', () => {
+    console.log('🎨 Current Lighting Settings:');
+    console.log(`Ambient Light: intensity=${ambientLight.intensity}`);
+    console.log(`Directional Light: intensity=${directionalLight.intensity}, position=(${directionalLight.position.x}, ${directionalLight.position.y}, ${directionalLight.position.z})`);
+    console.log(`Shadow: mapSize=${directionalLight.shadow.mapSize.width}, bias=${directionalLight.shadow.bias}`);
+});
+
+// Reset to defaults
+resetSettingsBtn.addEventListener('click', () => {
+    ambientLight.intensity = 1.0;
+    ambientIntensityInput.value = 1.0;
+    directionalLight.intensity = 1.2;
+    sunIntensityInput.value = 1.2;
+    directionalLight.position.set(50, 50, 50);
+    sunXInput.value = 50;
+    sunYInput.value = 50;
+    sunZInput.value = 50;
+    directionalLight.shadow.bias = 0;
+    shadowBiasInput.value = 0;
+    console.log('✅ Lighting reset to defaults');
+});
+
 // Start animation
 animate();
 
 console.log('🏎️ Racing game initialized! Scene is ready.');
 console.log('Controls: WASD or Arrow Keys to drive');
+console.log('💡 Lighting controls available on the right side');
