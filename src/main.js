@@ -166,6 +166,10 @@ world.addBody(groundBody);
 let car = null; // Will hold the loaded car model
 const loader = new GLTFLoader();
 
+// Loading screen elements
+const loadingScreen = document.getElementById('loading-screen');
+const loadingProgress = document.getElementById('loading-progress');
+
 loader.load(
     '/assets/nissan_gtr/scene.gltf',
     (gltf) => {
@@ -187,14 +191,23 @@ loader.load(
 
         scene.add(car);
         console.log('🏎️ Nissan GT-R R35 model loaded successfully!');
+
+        // Hide loading screen
+        loadingScreen.classList.add('hidden');
     },
     (progress) => {
-        console.log(`Loading model: ${(progress.loaded / progress.total * 100).toFixed(2)}%`);
+        const percentComplete = Math.round((progress.loaded / progress.total) * 100);
+        loadingProgress.textContent = `${percentComplete}%`;
+        console.log(`Loading model: ${percentComplete}%`);
     },
     (error) => {
         console.error('Error loading GT-R model:', error);
+        loadingScreen.textContent = 'Error loading model!';
         // Show cube if model fails to load
         cube.visible = true;
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+        }, 2000);
     }
 );
 
