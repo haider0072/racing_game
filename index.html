@@ -24,23 +24,23 @@
         <div id="lighting-panel">
             <div class="control-section">
                 <strong>Ambient Light</strong>
-                <label>Intensity: <input type="number" id="ambient-intensity" step="0.1" value="1.0" min="0" max="3"><span class="value">1.0</span></label>
+                <label>Intensity: <input type="number" id="ambient-intensity" step="0.1" value="0.4" min="0" max="3"><span class="value">0.4</span></label>
             </div>
             <div class="control-section">
                 <strong>Directional Light (Sun)</strong>
-                <label>Intensity: <input type="number" id="sun-intensity" step="0.1" value="1.2" min="0" max="5"><span class="value">1.2</span></label>
-                <label>Pos X: <input type="number" id="sun-x" step="5" value="50" min="-200" max="200"><span class="value">50</span></label>
-                <label>Pos Y: <input type="number" id="sun-y" step="5" value="50" min="0" max="200"><span class="value">50</span></label>
+                <label>Intensity: <input type="number" id="sun-intensity" step="0.1" value="2.5" min="0" max="5"><span class="value">2.5</span></label>
+                <label>Pos X: <input type="number" id="sun-x" step="5" value="100" min="-200" max="200"><span class="value">100</span></label>
+                <label>Pos Y: <input type="number" id="sun-y" step="5" value="80" min="0" max="200"><span class="value">80</span></label>
                 <label>Pos Z: <input type="number" id="sun-z" step="5" value="50" min="-200" max="200"><span class="value">50</span></label>
             </div>
             <div class="control-section">
                 <strong>Shadow Quality</strong>
                 <label>Map Size: <select id="shadow-size">
                     <option value="1024">1024</option>
-                    <option value="2048" selected>2048</option>
-                    <option value="4096">4096</option>
+                    <option value="2048">2048</option>
+                    <option value="4096" selected>4096</option>
                 </select></label>
-                <label>Bias: <input type="number" id="shadow-bias" step="0.0001" value="0" min="-0.01" max="0.01"><span class="value">0</span></label>
+                <label>Bias: <input type="number" id="shadow-bias" step="0.0001" value="-0.0001" min="-0.01" max="0.01"><span class="value">-0.0001</span></label>
             </div>
             <div class="control-section">
                 <strong>Export Settings</strong>

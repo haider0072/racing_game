@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 
 // Scene setup
 const scene = new THREE.Scene();
@@ -33,22 +34,57 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-// Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.0); // Increased from 0.6 to 1.0
+// Professional tone mapping for realistic lighting
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+// Professional Lighting Setup (based on racing game research)
+// Ambient light - soft fill light (reduced for more dramatic shadows)
+const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2); // Increased from 0.8 to 1.2
-directionalLight.position.set(50, 50, 50);
+// Sun (Directional Light) - realistic outdoor intensity
+const directionalLight = new THREE.DirectionalLight(0xfff5e6, 2.5);
+directionalLight.position.set(100, 80, 50); // High angle for realistic sun
 directionalLight.castShadow = true;
-directionalLight.shadow.camera.left = -50;
-directionalLight.shadow.camera.right = 50;
-directionalLight.shadow.camera.top = 50;
-directionalLight.shadow.camera.bottom = -50;
-directionalLight.shadow.camera.near = 0.1;
-directionalLight.shadow.camera.far = 200;
-directionalLight.shadow.mapSize.width = 2048;
-directionalLight.shadow.mapSize.height = 2048;
+
+// High-quality shadow settings
+directionalLight.shadow.mapSize.width = 4096;
+directionalLight.shadow.mapSize.height = 4096;
+directionalLight.shadow.camera.left = -150;
+directionalLight.shadow.camera.right = 150;
+directionalLight.shadow.camera.top = 150;
+directionalLight.shadow.camera.bottom = -150;
+directionalLight.shadow.camera.near = 0.5;
+directionalLight.shadow.camera.far = 300;
+directionalLight.shadow.bias = -0.0001;
+directionalLight.shadow.normalBias = 0.02;
 scene.add(directionalLight);
+
+// Hemisphere light for realistic sky/ground color blend
+const hemisphereLight = new THREE.HemisphereLight(
+    0x87ceeb, // Sky color (light blue)
+    0x8B7355, // Ground color (earth brown)
+    0.6
+);
+scene.add(hemisphereLight);
+
+// Load HDR environment map for realistic reflections
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load(
+    'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr',
+    (texture) => {
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        scene.environment = texture;
+        scene.environmentIntensity = 0.3; // Reduced from 1.0 to 0.3 for subtle reflections
+        console.log('✅ HDR environment loaded successfully');
+    },
+    undefined,
+    (error) => {
+        console.warn('⚠️ HDR environment failed to load, using basic lighting:', error);
+    }
+);
 
 // Create oval racing track with straights and curves
 const trackWidth = 12; // 2-lane track
@@ -78,11 +114,12 @@ trackShape.absarc(0, -straightLength/2, trackOuterRadius, 0, Math.PI, true);
 // Close the shape
 trackShape.lineTo(-trackWidth/2, -straightLength/2);
 
-// Create asphalt material
+// Professional asphalt material with PBR properties
 const trackMaterial = new THREE.MeshStandardMaterial({
-    color: 0x2a2a2a,
-    roughness: 0.9,
-    metalness: 0.1
+    color: 0x1a1a1a, // Darker asphalt
+    roughness: 0.85,
+    metalness: 0.0,
+    envMapIntensity: 0.3 // Subtle reflections
 });
 
 // Create track mesh
@@ -138,10 +175,12 @@ function createCenterLine() {
 
 createCenterLine();
 
-// Add grass infield and outfield
+// Professional grass material with PBR properties
 const grassMaterial = new THREE.MeshStandardMaterial({
-    color: 0x3a5f3a,
-    roughness: 1.0
+    color: 0x2d5a2d,
+    roughness: 0.95,
+    metalness: 0.0,
+    envMapIntensity: 0.1
 });
 
 // Large ground plane for grass
@@ -716,19 +755,29 @@ logSettingsBtn.addEventListener('click', () => {
     console.log(`Shadow: mapSize=${directionalLight.shadow.mapSize.width}, bias=${directionalLight.shadow.bias}`);
 });
 
-// Reset to defaults
+// Reset to professional defaults
 resetSettingsBtn.addEventListener('click', () => {
-    ambientLight.intensity = 1.0;
-    ambientIntensityInput.value = 1.0;
-    directionalLight.intensity = 1.2;
-    sunIntensityInput.value = 1.2;
-    directionalLight.position.set(50, 50, 50);
-    sunXInput.value = 50;
-    sunYInput.value = 50;
+    ambientLight.intensity = 0.4;
+    ambientIntensityInput.value = 0.4;
+    ambientIntensityInput.nextElementSibling.textContent = '0.4';
+
+    directionalLight.intensity = 2.5;
+    sunIntensityInput.value = 2.5;
+    sunIntensityInput.nextElementSibling.textContent = '2.5';
+
+    directionalLight.position.set(100, 80, 50);
+    sunXInput.value = 100;
+    sunXInput.nextElementSibling.textContent = '100';
+    sunYInput.value = 80;
+    sunYInput.nextElementSibling.textContent = '80';
     sunZInput.value = 50;
-    directionalLight.shadow.bias = 0;
-    shadowBiasInput.value = 0;
-    console.log('✅ Lighting reset to defaults');
+    sunZInput.nextElementSibling.textContent = '50';
+
+    directionalLight.shadow.bias = -0.0001;
+    shadowBiasInput.value = -0.0001;
+    shadowBiasInput.nextElementSibling.textContent = '-0.0001';
+
+    console.log('✅ Lighting reset to professional defaults');
 });
 
 // Start animation
